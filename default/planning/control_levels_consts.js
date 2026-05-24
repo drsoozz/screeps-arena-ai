@@ -2,11 +2,9 @@ const { RoleType } = require('../roles/role_base');
 
 const RoleDist = {
     1: {
-        [RoleType.HARVESTER]: 2,
         [RoleType.UPGRADER]: 1,
     },
     2: {
-        [RoleType.HARVESTER]: 3,
         [RoleType.UPGRADER]: 1,
         [RoleType.CONSTRUCTOR]: 2
     }
@@ -43,4 +41,20 @@ const RoleBody = {
     },
 }
 
-module.exports = {RoleDist, RoleBody};
+/**
+ * 
+ * @param {Room} room 
+ * @param {number} control_level 
+ * @returns {Object}
+ */
+function getRoleDist(room, control_level) {
+    const sources = room.find(FIND_SOURCES);
+    const base = RoleDist[control_level];
+    
+    return {
+        ...base,
+        [RoleType.HARVESTER]: sources.length
+    }
+}
+
+module.exports = {getRoleDist, RoleBody};

@@ -1,5 +1,5 @@
 const { RoleType } = require('../roles/role_base');
-const { RoleDist, RoleBody } = require('./control_levels_consts');
+const { getRoleDist, RoleBody } = require('./control_levels_consts');
 const { RolePriority } = require('./priority');
 
 /**
@@ -9,13 +9,12 @@ const { RolePriority } = require('./priority');
 function plan_next_creep(spawn, control_level) {
 
     const NumCreepsNeeded = new Object()
-    const RequiredCreeps = RoleDist[control_level]
+    const RequiredCreeps = getRoleDist[control_level]
 
     for(let role in RoleType) {
         NumCreepsNeeded[role] = RequiredCreeps[role]
     }
 
-    // this is done in a weird way to not mutate RoleDist
     for(let name in Game.creeps) {
         let role = Game.creeps[name].memory.role
         NumCreepsNeeded[role]--

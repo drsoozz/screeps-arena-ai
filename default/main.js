@@ -2,12 +2,7 @@
 const { waste_collection } = require('./utilities/waste_collection')
 const { plan_next_creep } = require('./planning/plan_next_creep')
 
-const { RoleType } = require('./roles/role_base')
 const { RoleMap } = require('./roles/role_map')
-
-const { Harvester } = require('./roles/harvester');
-// var roleUpgrader = require('role.upgrader');
-// var roleBuilder = require('role.builder');
 
 module.exports.loop = function () {
     /**
@@ -23,6 +18,9 @@ module.exports.loop = function () {
 
     // Part 2 - Creep planning
     plan_next_creep()
+
+    // Part 3 - Structure planning
+    // TODO: implement
 
     // Part 4 - Creep actions
     for(let name in Game.creeps) {
