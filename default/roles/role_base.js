@@ -1,6 +1,6 @@
 const RoleType = {
     HARVESTER: "harvester",
-    BUILDER: "builder",
+    CONSTRUCTOR: "constructor",
     UPGRADER: "upgrader"
 };
 
@@ -25,5 +25,6 @@ class RoleBase {
 }
 
 module.exports = {
+    RoleType,
     RoleBase
 };
