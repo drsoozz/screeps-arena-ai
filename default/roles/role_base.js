@@ -1,8 +1,8 @@
-const RoleType = {
-    HARVESTER: "harvester",
-    CONSTRUCTOR: "constructor",
-    UPGRADER: "upgrader"
-};
+const RoleType = Object.freeze({
+    HARVESTER: "HARVESTER",
+    CONSTRUCTOR: "CONSTRUCTOR",
+    UPGRADER: "UPGRADER"
+});
 
 class RoleBase {
     constructor(creep) {
