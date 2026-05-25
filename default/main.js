@@ -1,8 +1,12 @@
 // parts
-const { waste_collection } = require('./utilities/waste_collection')
-const { plan_next_creep } = require('./planning/plan_next_creep')
+const { waste_collection } = require('./utilities.waste_collection')
+const { plan_next_creep } = require('./planning.plan_next_creep')
+const {planNextStructure} = require('./planning.plan_next_structure')
 
-const { RoleMap } = require('./roles/role_map')
+const {Renewing} = require('./roles.renewing')
+
+const {MIN_LIFE, MAX_LIFE} = require('./consts')
+const { RoleMap } = require('./roles.role_map')
 
 module.exports.loop = function () {
     /**
@@ -13,19 +17,49 @@ module.exports.loop = function () {
      *  4. Creep actions
      */
 
+    console.log("\n\n")
+
     // Part 1 - Waste collection
     waste_collection()
 
-    // Part 2 - Creep planning
-    plan_next_creep()
+    const rooms = new Set();
 
-    // Part 3 - Structure planning
-    // TODO: implement
+    for (let name in Game.spawns) {
+        let spawn = Game.spawns[name]
+        rooms.add(spawn.room)
+        // Part 2 - Creep planning
+        plan_next_creep(spawn, spawn.room.controller.level)
+    }
+    for (let room of rooms) {
+        // Part 3 - Structure planning
+        if (room.controller.level < 2) {
+            continue;
+        } else {
+            planNextStructure(room);
+        }
+    }
 
     // Part 4 - Creep actions
     for(let name in Game.creeps) {
         let creep = Game.creeps[name];
-        const RoleClass = RoleMap[creep.memory.role]
+        
+        if (creep.ticksToLive <= MIN_LIFE) {
+            if (!creep.memory.renewing) {
+                console.log(`"${creep.name}" has begun renewing.`);
+            }
+    
+            creep.memory.renewing = true
+        } else if (creep.ticksToLive >= MAX_LIFE) {
+            console.log(`"${creep.name}" has finished renewing.`)
+            creep.memory.renewing = false
+        }
+        
+        let RoleClass;
+        if (creep.memory.renewing) {
+            RoleClass = Renewing
+        } else {
+            RoleClass = RoleMap[creep.memory.role]
+        }
 
         if (!RoleClass) {
             console.log(`Unknown role: ${creep.memory.role}`);
@@ -33,7 +67,6 @@ module.exports.loop = function () {
         }
 
         const role = new RoleClass(creep);
-
         role.run();
     }
 }

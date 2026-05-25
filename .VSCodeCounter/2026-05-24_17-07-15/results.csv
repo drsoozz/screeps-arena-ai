@@ -1,0 +1,17 @@
+"filename", "language", "JavaScript JSX", "comment", "blank", "total"
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\main.js", "JavaScript JSX", 25, 12, 11, 48
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\planning.control_levels_consts.js", "JavaScript JSX", 51, 6, 7, 64
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\planning.plan_next_creep.js", "JavaScript JSX", 86, 9, 13, 108
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\planning.plan_next_structure.js", "JavaScript JSX", 3, 3, 1, 7
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\planning.priority.js", "JavaScript JSX", 14, 0, 3, 17
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.constructor.js", "JavaScript JSX", 79, 0, 5, 84
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.harvester.js", "JavaScript JSX", 64, 1, 3, 68
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.role_base.js", "JavaScript JSX", 25, 3, 2, 30
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.role_map.js", "JavaScript JSX", 10, 1, 2, 13
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.upgrader.js", "JavaScript JSX", 45, 0, 5, 50
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.find_safe_construction_sites.js", "JavaScript JSX", 9, 3, 1, 13
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.find_safe_sources.js", "JavaScript JSX", 9, 3, 1, 13
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.get_energy.js", "JavaScript JSX", 14, 4, 1, 19
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.harvest_safe_source.js", "JavaScript JSX", 8, 4, 2, 14
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.waste_collection.js", "JavaScript JSX", 9, 0, 1, 10
+"Total", "-", 451, 49, 58, 558

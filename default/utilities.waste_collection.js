@@ -7,4 +7,4 @@ function waste_collection() {
     }
 }
 
-module.exports = waste_collection;
+module.exports = {waste_collection};

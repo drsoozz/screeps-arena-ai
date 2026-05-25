@@ -1,4 +1,4 @@
-const rb = require('./role_base');
+const rb = require('./roles.role_base');
 
 const Tasks = {
     HARVEST: "HARVEST",
@@ -19,8 +19,10 @@ class Harvester extends rb.RoleBase {
         }
         default:
         case Tasks.TRANSFER: {
-            if (this.creep.store.getFreeCapacity(RESOURCE_ENERGY) === this.creep.store.getCapacity(RESOURCE_ENERGY)) {
+            if (this.creep.store.getUsedCapacity(RESOURCE_ENERGY) === 0) {
                 this.memory.task = Tasks.HARVEST;
+            } else {
+                this.memory.task = Tasks.TRANSFER;
             }
             break;
         }
@@ -30,13 +32,14 @@ class Harvester extends rb.RoleBase {
         switch(this.memory.task) {
             default:
             case Tasks.HARVEST: {
-                if(this.creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                this.creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+                const source = Game.getObjectById(this.memory.sourceId)
+                if(this.creep.harvest(source) == ERR_NOT_IN_RANGE) {
+                this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
                 }
                 break;
             }
             case Tasks.TRANSFER: {
-                let targets = this.creep.room.find(FIND_STRUCTURES, {
+                let targets = this.creep.room.find(FIND_MY_STRUCTURES, {
                         filter: (structure) => {
                             return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
                                 structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
@@ -44,11 +47,11 @@ class Harvester extends rb.RoleBase {
                 });
                 if(targets.length > 0) {
                     if(this.creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                        this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffaa00'}});
                     }
                 // if all spawns and extensions are full, fill up containers
                 } else {
-                    let targets = this.creep.room.find(FIND_STRUCTURES, {filter: (structure) => {
+                    let targets = this.creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {
                         return (structure.structureType == STRUCTURE_CONTAINER && structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
                     }})
                     if(targets.length > 0) {

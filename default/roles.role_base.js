@@ -22,6 +22,13 @@ class RoleBase {
     _do_task() {
         throw new Error("_do_task() must be implemented by subclass");
     }
+    _harvest() {
+        if (this.memory.sourceId) {
+
+        } else {
+            
+        }
+    }
 }
 
 module.exports = {
