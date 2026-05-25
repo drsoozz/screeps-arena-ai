@@ -1,7 +1,8 @@
 const RoleType = Object.freeze({
     HARVESTER: "HARVESTER",
     CONSTRUCTOR: "CONSTRUCTOR",
-    UPGRADER: "UPGRADER"
+    UPGRADER: "UPGRADER",
+    REPAIRER: "REPAIRER"
 });
 
 class RoleBase {

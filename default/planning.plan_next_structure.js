@@ -10,7 +10,7 @@ function planNextStructure(room) {
     const numStructuresNeeded = new Object()
 
     for (let struct in CONTROLLER_STRUCTURES) {
-        const current = room.find(FIND_MY_STRUCTURES, {
+        const current = room.find(FIND_STRUCTURES, {
             filter: (s) => s.structureType === struct
         }).length;
         const planned = room.find(FIND_MY_CONSTRUCTION_SITES, {

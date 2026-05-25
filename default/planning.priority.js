@@ -3,7 +3,8 @@ const { RoleType } = require('./roles.role_base');
 const RolePriority = [
     RoleType.HARVESTER,
     RoleType.UPGRADER,
-    RoleType.CONSTRUCTOR
+    RoleType.CONSTRUCTOR,
+    RoleType.REPAIRER
 ];
 
 const StructurePriority = [

@@ -3,7 +3,7 @@ const { getEnergy } = require('./utilities.get_energy');
 
 const Tasks = {
     GET_ENERGY: "GET_ENERGY",
-    TRANFER: "TRANSFER",
+    TRANSFER: "TRANSFER",
     RENEW: "RENEW"
 }
 

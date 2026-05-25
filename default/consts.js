@@ -1,7 +1,17 @@
 const ROOM_SIZE = 50;
 const MIN_EXTENSION_COORD = 5;
 const MAX_EXTENSION_COORD = 44;
-const MIN_LIFE = 500;
-const MAX_LIFE = 3000;
+const MIN_LIFE = 250;
+const MAX_LIFE = 1400;
+const MAX_RENEW_CYCLES = {
+    1: 3,
+    2: 4,
+    3: 5,
+    4: 6,
+    5: 7,
+    6: 8,
+    7: 9,
+    8: 10
+}
 
-module.exports = {ROOM_SIZE, MIN_EXTENSION_COORD, MAX_EXTENSION_COORD, MIN_LIFE, MAX_LIFE};
+module.exports = {ROOM_SIZE, MIN_EXTENSION_COORD, MAX_EXTENSION_COORD, MIN_LIFE, MAX_LIFE, MAX_RENEW_CYCLES};

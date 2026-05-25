@@ -1,9 +1,9 @@
 const {ROOM_SIZE} = require('./consts')
 
-function* spiralOutward() {
+function* spiralOutward(xpos = ROOM_SIZE / 2, ypos = ROOM_SIZE / 2) {
 
-    let x = Math.floor(ROOM_SIZE / 2);
-    let y = Math.floor(ROOM_SIZE / 2);
+    let x = Math.floor(xpos);
+    let y = Math.floor(ypos);
 
     let dx = 1;
     let dy = 0;

@@ -5,7 +5,7 @@ const {planNextStructure} = require('./planning.plan_next_structure')
 
 const {Renewing} = require('./roles.renewing')
 
-const {MIN_LIFE, MAX_LIFE} = require('./consts')
+const {MIN_LIFE, MAX_LIFE, MAX_RENEW_CYCLES} = require('./consts')
 const { RoleMap } = require('./roles.role_map')
 
 module.exports.loop = function () {
@@ -43,14 +43,24 @@ module.exports.loop = function () {
     for(let name in Game.creeps) {
         let creep = Game.creeps[name];
         
-        if (creep.ticksToLive <= MIN_LIFE) {
-            if (!creep.memory.renewing) {
-                console.log(`"${creep.name}" has begun renewing.`);
-            }
-    
+        if (creep.ticksToLive <= MIN_LIFE && 
+            !creep.memory.renewing && 
+            (
+                !creep.memory.renewing_num || 
+                creep.memory.renewing_num < MAX_RENEW_CYCLES[creep.room.controller.level]
+            )
+        ) {
+            console.log(`"${creep.name}" has begun renewing.`);
             creep.memory.renewing = true
+            if (!creep.memory.renewing_num) {
+                creep.memory.renewing_num = 1
+            } else {
+                creep.memory.renewing_num += 1
+            }
         } else if (creep.ticksToLive >= MAX_LIFE) {
-            console.log(`"${creep.name}" has finished renewing.`)
+            if (creep.memory.renewing) {
+                console.log(`"${creep.name}" has finished renewing.`)
+            }
             creep.memory.renewing = false
         }
         
