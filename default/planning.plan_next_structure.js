@@ -84,30 +84,34 @@ function _planContainer(room) {
 */
 function _planRoads(room) {
 
+    if (!Memory.road_planner) {
+        Memory.road_planner = {};
+    }
+
     // initialize
-    if (!Memory.road_planner || !Memory.road_planner.coords || Memory.road_planner.index === undefined) {
-        Memory.road_planner = {
+    if (!Memory.road_planner[room.name] || !Memory.road_planner[room.name].coords || Memory.road_planner[room.name].index === undefined) {
+        Memory.road_planner[room.name] = {
             coords: roadPlannerCoords(room),
             index: 0
         }
-        console.log("`Memory.road_planner` was generated.")
+        console.log(`"Memory.road_planner" was generated for ${room.name}.`)
     } 
 
     // reset when finished
-    if (Memory.road_planner.index >= Memory.road_planner.coords.length) {
-        Memory.road_planner.coords = roadPlannerCoords(room);
-        Memory.road_planner.index = 0;
-        console.log("`Memory.road_planner` was regenerated.")
+    if (Memory.road_planner[room.name].index >= Memory.road_planner[room.name].coords.length) {
+        Memory.road_planner[room.name].coords = roadPlannerCoords(room);
+        Memory.road_planner[room.name].index = 0;
+        console.log(`"Memory.road_planner" was regenerated for ${room.name}.`)
     }
 
-    const raw = Memory.road_planner.coords[Memory.road_planner.index];
+    const raw = Memory.road_planner[room.name].coords[Memory.road_planner[room.name].index];
     const pos = new RoomPosition(raw.x, raw.y, raw.roomName);
 
     if (!hasRoadOrSite(pos)) {
         pos.createConstructionSite(STRUCTURE_ROAD);
     }
 
-    Memory.road_planner.index++;
+    Memory.road_planner[room.name].index++;
     
 }
 
