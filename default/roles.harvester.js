@@ -34,7 +34,7 @@ class Harvester extends rb.RoleBase {
             case Tasks.CONSTRUCT: {
                 if (this.creep.store.getUsedCapacity(RESOURCE_ENERGY) === 0) {
                     this.memory.task = Tasks.HARVEST
-                } else if (this._get_all_transfer_targets().length >= 1) {
+                } else if (!(this._get_all_transfer_targets().length === 0)) {
                     this.memory.task = Tasks.TRANSFER
                 } else if (this._get_all_safe_construction_sites().length === 0) {
                     this.memory.task = Tasks.REPAIR
@@ -44,25 +44,28 @@ class Harvester extends rb.RoleBase {
             case Tasks.REPAIR: {
                 if (this.creep.store.getUsedCapacity(RESOURCE_ENERGY) === 0) {
                     this.memory.task = Tasks.HARVEST
-                } else if (this._get_all_transfer_targets().length >= 1) {
+                } else if (!(this._get_all_transfer_targets().length === 0)) {
                     this.memory.task = Tasks.TRANSFER
-                } else if (!(this._get_all_safe_construction_sites() === 0)) {
+                } else if (!(this._get_all_safe_construction_sites().length === 0)) {
                     this.memory.task = Tasks.CONSTRUCT
-                } else {
+                } else if ((this._get_all_repair_targets().length === 0)) {
                     this.memory.task = Tasks.UPGRADE
+                    console.log(this.memory.task)
+                } else {
                 }
                 break;
             }
             case Tasks.UPGRADE: {
                 if (this.creep.store.getUsedCapacity(RESOURCE_ENERGY) === 0) {
                     this.memory.task = Tasks.HARVEST
-                } else if (this._get_all_transfer_targets().length >= 1) {
+                } else if (!(this._get_all_transfer_targets().length === 0)) {
                     this.memory.task = Tasks.TRANSFER
-                } else if (!(this._get_all_safe_construction_sites() === 0)) {
+                } else if (!(this._get_all_safe_construction_sites().length === 0)) {
                     this.memory.task = Tasks.CONSTRUCT
-                } else {
+                } else if (!(this._get_all_repair_targets().length === 0)) {
                     this.memory.task = Tasks.REPAIR
                 }
+                break;
             }
         }
     }

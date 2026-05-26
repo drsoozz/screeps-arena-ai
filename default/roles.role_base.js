@@ -57,11 +57,7 @@ class RoleBase {
      */
     _repair(threshhold = 0.75) {
         if (!this.memory.repair_target) {
-            const structs = this.creep.room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return ((structure.hits / structure.hitsMax) < threshhold);
-                }
-            });
+            const structs = this._get_all_repair_targets(threshhold)
             if (structs.length > 0) {
                 structs.sort((a, b) => {
                     return (a.hits / a.hitsMax) - (b.hits / b.hitsMax);
@@ -114,6 +110,18 @@ class RoleBase {
             return hostilesNearby.length === 0;
         })
         return safeCSites
+    }
+    /**
+     * 
+     * @param {number} threshhold 
+     */
+    _get_all_repair_targets(threshhold = 0.75) {
+        const structs = this.creep.room.find(FIND_STRUCTURES, {
+            filter: (structure) => {
+                return ((structure.hits / structure.hitsMax) < threshhold);
+            }
+        });
+        return structs
     }
 }
 
