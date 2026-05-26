@@ -90,8 +90,8 @@ function plan_creep_body(spawn, control_level, role, emergency) {
         }
     }
 
-    if (ecurrent < etot) {
-        console.log("Not enough energy to create this creep's current body plan. BODY PLAN: " + body);
+    if (ecost > ecurrent) {
+        console.log(`Not enough energy to create this creep's current body plan (${ecurrent}/${ecost}). BODY PLAN: ` + body);
         return undefined;
     }
 

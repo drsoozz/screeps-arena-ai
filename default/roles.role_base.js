@@ -40,8 +40,8 @@ class RoleBase {
         }
     }
     _get_energy() {
-        let targets = this.creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {
-                            return (structure.structureType == STRUCTURE_CONTAINER && structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
+        let targets = this.creep.room.find(FIND_STRUCTURES, {filter: (structure) => {
+                            return (structure.structureType == STRUCTURE_CONTAINER && structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0);
                         }});
         if(targets.length > 0) {
             if(this.creep.withdraw(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
