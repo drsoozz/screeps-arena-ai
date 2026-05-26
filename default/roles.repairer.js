@@ -1,7 +1,5 @@
 const rb = require('./roles.role_base');
-const { getEnergy } = require('./utilities.get_energy');
 const { FindSafeConstructionSites } = require('./utilities.find_safe_construction_sites')
-const {Repair} = require('./utilities.repair')
 
 const Tasks = {
     CONSTRUCT: "CONSTRUCT",
@@ -39,12 +37,12 @@ class Repairer extends rb.RoleBase {
     _do_task() {
         switch(this.memory.task) {
             case Tasks.REPAIR: {
-                Repair(this.creep, 0.80)
+                this._repair(0.80)
                 break;
             }
             default:
             case Tasks.GET_ENERGY: {
-                getEnergy(this.creep)
+                this._get_energy()
                 break;
             }
         }

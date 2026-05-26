@@ -1,5 +1,4 @@
 const rb = require('./roles.role_base');
-const { getEnergy } = require('./utilities.get_energy');
 
 const Tasks = {
     GET_ENERGY: "GET_ENERGY",
@@ -54,7 +53,7 @@ class Renewing extends rb.RoleBase {
         switch(this.memory.task) {
             default:
             case Tasks.GET_ENERGY: {
-                getEnergy(this.creep)
+                this._get_energy();
                 break;
             }
             case Tasks.TRANSFER: {
