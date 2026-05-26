@@ -9,12 +9,12 @@ const RoleDist = {
     2: {
         [RoleType.UPGRADER]: 2,
         [RoleType.CONSTRUCTOR]: 3,
-        [RoleType.REPAIRER]: 1
+        [RoleType.REPAIRER]: 2
     },
     3: {
         [RoleType.UPGRADER]: 2,
         [RoleType.CONSTRUCTOR]: 4,
-        [RoleType.REPAIRER]: 2
+        [RoleType.REPAIRER]: 3
     }
 };
 
@@ -51,7 +51,7 @@ const RoleBody = {
             fill_body: WORK
         },
         [RoleType.REPAIRER]: {
-            set_body: [CARRY, MOVE, MOVE, MOVE, MOVE, WORK, WORK],
+            set_body: [CARRY, CARRY, CARRY, MOVE, MOVE, WORK, WORK],
             fill_body: null
         }
     },
@@ -69,7 +69,7 @@ const RoleBody = {
             fill_body: null
         },
         [RoleType.REPAIRER]: {
-            set_body: [CARRY, MOVE, MOVE, MOVE, MOVE, WORK, WORK],
+            set_body: [CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, WORK, WORK],
             fill_body: null
         }
     },

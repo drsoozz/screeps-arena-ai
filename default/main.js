@@ -21,6 +21,9 @@ module.exports.loop = function () {
 
     // Part 1 - Waste collection
     waste_collection()
+    if (Game.cpu.bucket === 10000) {
+        Game.cpu.generatePixel();
+    }
 
     const rooms = new Set();
 
