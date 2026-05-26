@@ -51,7 +51,8 @@ class Harvester extends rb.RoleBase {
                     }
                 // if all spawns and extensions are full, fill up containers
                 } else {
-                    let targets = this.creep.room.find(FIND_MY_STRUCTURES, {filter: (structure) => {
+
+                    let targets = this.creep.room.find(FIND_STRUCTURES, {filter: (structure) => {
                         return (structure.structureType == STRUCTURE_CONTAINER && structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
                     }})
                     if(targets.length > 0) {

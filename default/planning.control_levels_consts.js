@@ -43,15 +43,15 @@ const RoleBody = {
             fill_body: WORK,
         },
         [RoleType.UPGRADER]: {
-            set_body: [CARRY, CARRY, CARRY, MOVE],
-            fill_body: WORK
+            set_body: [WORK, CARRY, CARRY, MOVE],
+            fill_body: null
         },
         [RoleType.CONSTRUCTOR]: {
-            set_body: [CARRY, CARRY, MOVE, MOVE],
-            fill_body: WORK
+            set_body: [CARRY, CARRY, MOVE, MOVE, WORK],
+            fill_body: null
         },
         [RoleType.REPAIRER]: {
-            set_body: [CARRY, MOVE, MOVE, WORK],
+            set_body: [CARRY, MOVE, MOVE, MOVE, WORK],
             fill_body: null
         }
     },
@@ -61,15 +61,15 @@ const RoleBody = {
             fill_body: WORK,
         },
         [RoleType.UPGRADER]: {
-            set_body: [CARRY, CARRY, CARRY, MOVE],
-            fill_body: WORK
+            set_body: [WORK, CARRY, CARRY, MOVE],
+            fill_body: null
         },
         [RoleType.CONSTRUCTOR]: {
-            set_body: [CARRY, CARRY, MOVE, MOVE],
-            fill_body: WORK
+            set_body: [CARRY, CARRY, MOVE, MOVE, WORK],
+            fill_body: null
         },
         [RoleType.REPAIRER]: {
-            set_body: [CARRY, MOVE, MOVE, WORK],
+            set_body: [CARRY, MOVE, MOVE, MOVE, WORK],
             fill_body: null
         }
     },

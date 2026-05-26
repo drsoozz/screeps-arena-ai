@@ -53,9 +53,9 @@ class RoleBase {
     }
     /**
      * 
-     * @param {Number} threshhold 
+     * @param {number} threshhold 
      */
-    _repair(threshhold) {
+    _repair(threshhold = 0.75) {
         if (!this.memory.repair_target) {
             const structs = this.creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
@@ -66,15 +66,18 @@ class RoleBase {
                 structs.sort((a, b) => {
                     return (a.hits / a.hitsMax) - (b.hits / b.hitsMax);
                 });
-                this.creep.memory.repair_target = structs[0]
+                this.creep.memory.repair_target = structs[0].id
             }
         } else {
-            ratio = this.memory.repair_target.hits / this.memory.repair_target.hitsMax
-            if (ratio > REPAIR_STOP_THRESHHOLD) {
+            
+            /** @param {AnyStructure} struct */
+            const struct = Game.getObjectById(this.memory.repair_target)
+            if (struct.hits / struct.hitsMax > REPAIR_STOP_THRESHHOLD) {
                 this.memory.repair_target = null;
             } else {
-                if (this.creep.repair(structs[0]) == ERR_NOT_IN_RANGE) {
-                    this.creep.moveTo(structs[0], {visualizePathStyle: {stroke: '#00B300'}})
+                
+                if (this.creep.repair(struct) == ERR_NOT_IN_RANGE) {
+                    this.creep.moveTo(struct, {visualizePathStyle: {stroke: '#00B300'}})
                 }
             }
         }

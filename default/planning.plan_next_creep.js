@@ -39,6 +39,7 @@ function plan_next_creep(spawn, control_level) {
             const _memory = {role: role, renewing_num: 0}
             _memory.sourceId = _get_source(role, spawn)
             const result = spawn.spawnCreep(body, name, {memory: _memory});
+            console.log(result)
             return result
         }
     }
@@ -56,7 +57,9 @@ function plan_creep_body(spawn, control_level, role, emergency) {
     let bdata = RoleBody[control_level][role]
     let body = [...bdata.set_body];
     let fill_body = bdata.fill_body
-    body.push(fill_body)
+    if(!!fill_body) {
+        body.push(fill_body)
+    }
     if(emergency) {
         return body
     }
