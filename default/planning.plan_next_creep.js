@@ -76,7 +76,7 @@ function plan_creep_body(spawn, control_level, role, emergency) {
     }
     let ecost = _.sum(body, bp => BODYPART_COST[bp])
     if(ecost > etot) {
-        console.log("Not enough energy storage to create this creep's basic body plan. BODY PLAN: " + body);
+        console.log(`Not enough energy storage to create this creep's basic body plan (${etot}/${ecost}). BODY PLAN: ${body}`);
         return undefined;
     }
     if(!!fill_body) {
