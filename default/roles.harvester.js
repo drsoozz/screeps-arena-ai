@@ -26,8 +26,6 @@ class Harvester extends rb.RoleBase {
                     this.memory.task = Tasks.HARVEST;
                 } else if (this._get_all_transfer_targets().length < 1) {
                     this.memory.task = Tasks.CONSTRUCT;
-                } else {
-                    this.memory.task = Tasks.TRANSFER;
                 }
                 break;
             }
@@ -51,7 +49,6 @@ class Harvester extends rb.RoleBase {
                 } else if ((this._get_all_repair_targets().length === 0)) {
                     this.memory.task = Tasks.UPGRADE
                     console.log(this.memory.task)
-                } else {
                 }
                 break;
             }
@@ -99,6 +96,7 @@ class Harvester extends rb.RoleBase {
                         }
                     }
                 }
+                break;
             }
             case Tasks.CONSTRUCT: {
                 this._construct();
