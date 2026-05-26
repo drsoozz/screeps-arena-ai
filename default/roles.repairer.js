@@ -16,7 +16,7 @@ class Repairer extends rb.RoleBase {
             case Tasks.REPAIR: {
                 if (this.creep.store.getUsedCapacity(RESOURCE_ENERGY) === 0) {
                     this.memory.task = Tasks.GET_ENERGY
-                } else if (!(this.safeCSites.length === 0)) {
+                } else if (!(this._get_all_safe_construction_sites().length === 0)) {
                     this.memory.task = Tasks.CONSTRUCT
                 }
                 break;

@@ -90,6 +90,11 @@ class RoleBase {
             }
         } 
     }
+    _upgrade() {
+        if(this.creep.upgradeController(this.creep.room.controller) == ERR_NOT_IN_RANGE) {
+            this.creep.moveTo(this.creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}})
+        }
+    }
     _get_all_transfer_targets() {
         let targets = this.creep.room.find(FIND_MY_STRUCTURES, {
                 filter: (structure) => {

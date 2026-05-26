@@ -4,7 +4,8 @@ const Tasks = {
     HARVEST: "HARVEST",
     TRANSFER: "TRANSFER",
     CONSTRUCT: "CONSTRUCT",
-    REPAIR: "REPAIR"
+    REPAIR: "REPAIR",
+    UPGRADE: "UPGRADE"
 }
 
 class Harvester extends rb.RoleBase {
@@ -35,7 +36,7 @@ class Harvester extends rb.RoleBase {
                     this.memory.task = Tasks.HARVEST
                 } else if (this._get_all_transfer_targets().length >= 1) {
                     this.memory.task = Tasks.TRANSFER
-                } else if (this.safeCSites.length === 0) {
+                } else if (this._get_all_safe_construction_sites().length === 0) {
                     this.memory.task = Tasks.REPAIR
                 }
                 break;
@@ -45,10 +46,23 @@ class Harvester extends rb.RoleBase {
                     this.memory.task = Tasks.HARVEST
                 } else if (this._get_all_transfer_targets().length >= 1) {
                     this.memory.task = Tasks.TRANSFER
-                } else if (!(this.safeCSites.length === 0)) {
+                } else if (!(this._get_all_safe_construction_sites() === 0)) {
                     this.memory.task = Tasks.CONSTRUCT
+                } else {
+                    this.memory.task = Tasks.UPGRADE
                 }
                 break;
+            }
+            case Tasks.UPGRADE: {
+                if (this.creep.store.getUsedCapacity(RESOURCE_ENERGY) === 0) {
+                    this.memory.task = Tasks.HARVEST
+                } else if (this._get_all_transfer_targets().length >= 1) {
+                    this.memory.task = Tasks.TRANSFER
+                } else if (!(this._get_all_safe_construction_sites() === 0)) {
+                    this.memory.task = Tasks.CONSTRUCT
+                } else {
+                    this.memory.task = Tasks.REPAIR
+                }
             }
         }
     }
@@ -89,6 +103,10 @@ class Harvester extends rb.RoleBase {
             }
             case Tasks.REPAIR: {
                 this._repair();
+                break;
+            }
+            case Tasks.UPGRADE: {
+                this._upgrade();
                 break;
             }
         }

@@ -32,14 +32,13 @@ class Upgrader extends rb.RoleBase {
     _do_task() {
         switch(this.memory.task) {
             case Tasks.UPGRADE: {
-                if(this.creep.upgradeController(this.creep.room.controller) == ERR_NOT_IN_RANGE) {
-                    this.creep.moveTo(this.creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}})
-                }
+                this._upgrade();
                 break;
             }
             default:
             case Tasks.GET_ENERGY: {
-                this._get_energy()
+                this._get_energy();
+                break;
             }
         }
     }
