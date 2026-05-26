@@ -2,7 +2,9 @@ const rb = require('./roles.role_base');
 
 const Tasks = {
     HARVEST: "HARVEST",
-    TRANSFER: "TRANSFER"
+    TRANSFER: "TRANSFER",
+    CONSTRUCT: "CONSTRUCT",
+    REPAIR: "REPAIR"
 }
 
 class Harvester extends rb.RoleBase {
@@ -10,32 +12,51 @@ class Harvester extends rb.RoleBase {
         super(creep)
     }
     _find_task() {
-    switch(this.memory.task) {
-        case Tasks.HARVEST: {
-            if (this.creep.store.getFreeCapacity(RESOURCE_ENERGY) === 0) {
-                this.memory.task = Tasks.TRANSFER;
+        switch(this.memory.task) {
+            case Tasks.HARVEST: {
+                if (this.creep.store.getFreeCapacity(RESOURCE_ENERGY) === 0) {
+                    this.memory.task = Tasks.TRANSFER;
+                }
+                break;
             }
-            break;
-        }
-        default:
-        case Tasks.TRANSFER: {
-            if (this.creep.store.getUsedCapacity(RESOURCE_ENERGY) === 0) {
-                this.memory.task = Tasks.HARVEST;
-            } else {
-                this.memory.task = Tasks.TRANSFER;
+            default:
+            case Tasks.TRANSFER: {
+                if (this.creep.store.getUsedCapacity(RESOURCE_ENERGY) === 0) {
+                    this.memory.task = Tasks.HARVEST;
+                } else if (this._get_all_transfer_targets().length < 1) {
+                    this.memory.task = Tasks.CONSTRUCT;
+                } else {
+                    this.memory.task = Tasks.TRANSFER;
+                }
+                break;
             }
-            break;
+            case Tasks.CONSTRUCT: {
+                if (this.creep.store.getUsedCapacity(RESOURCE_ENERGY) === 0) {
+                    this.memory.task = Tasks.HARVEST
+                } else if (this._get_all_transfer_targets().length >= 1) {
+                    this.memory.task = Tasks.TRANSFER
+                } else if (this.safeCSites.length === 0) {
+                    this.memory.task = Tasks.REPAIR
+                }
+                break;
+            }
+            case Tasks.REPAIR: {
+                if (this.creep.store.getUsedCapacity(RESOURCE_ENERGY) === 0) {
+                    this.memory.task = Tasks.HARVEST
+                } else if (this._get_all_transfer_targets().length >= 1) {
+                    this.memory.task = Tasks.TRANSFER
+                } else if (!(this.safeCSites.length === 0)) {
+                    this.memory.task = Tasks.CONSTRUCT
+                }
+                break;
+            }
         }
     }
-}
     _do_task() {
         switch(this.memory.task) {
             default:
             case Tasks.HARVEST: {
-                const source = Game.getObjectById(this.memory.sourceId)
-                if(this.creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
-                }
+                this._harvest_safe_source()
                 break;
             }
             case Tasks.TRANSFER: {
@@ -61,6 +82,14 @@ class Harvester extends rb.RoleBase {
                         }
                     }
                 }
+            }
+            case Tasks.CONSTRUCT: {
+                this._construct();
+                break;
+            }
+            case Tasks.REPAIR: {
+                this._repair();
+                break;
             }
         }
     }

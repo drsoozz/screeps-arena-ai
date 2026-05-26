@@ -44,7 +44,8 @@ function planNextStructure(room) {
 * @param {Structure} structure
 */
 function __planUtility(room, structure) {
-    const _xy = spiralOutward()
+    const spawn_pos = room.find(FIND_MY_SPAWNS)[0]
+    const _xy = spiralOutward(spawn_pos.x, spawn_pos.y)
     while (true) {
         const xy = _xy.next().value;
         if (!xy) {

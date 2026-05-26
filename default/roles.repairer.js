@@ -1,5 +1,4 @@
 const rb = require('./roles.role_base');
-const { FindSafeConstructionSites } = require('./utilities.find_safe_construction_sites')
 
 const Tasks = {
     CONSTRUCT: "CONSTRUCT",

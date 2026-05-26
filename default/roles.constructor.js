@@ -1,5 +1,4 @@
 const rb = require('./roles.role_base');
-const { FindSafeConstructionSites } = require('./utilities.find_safe_construction_sites')
 
 const Tasks = {
     CONSTRUCT: "CONSTRUCT",
@@ -10,7 +9,6 @@ const Tasks = {
 class Constructor extends rb.RoleBase {
     constructor (creep) {
         super(creep)
-        this.safeCSites = FindSafeConstructionSites(this.creep.room)
     }
 
     _find_task() {
@@ -26,7 +24,7 @@ class Constructor extends rb.RoleBase {
             case Tasks.REPAIR: {
                 if (this.creep.store.getUsedCapacity(RESOURCE_ENERGY) === 0) {
                     this.memory.task = Tasks.GET_ENERGY
-                } else if (!(this.safeCSites.length === 0)) {
+                } else if (!(this._get_all_safe_construction_sites().length === 0)) {
                     this.memory.task = Tasks.CONSTRUCT
                 }
                 break;
@@ -34,7 +32,7 @@ class Constructor extends rb.RoleBase {
             default:
             case Tasks.GET_ENERGY: {
                 if (this.creep.store.getFreeCapacity(RESOURCE_ENERGY) === 0) {
-                    if (!(this.safeCSites.length === 0)) {
+                    if (!(this._get_all_safe_construction_sites().length  === 0)) {
                         this.memory.task = Tasks.CONSTRUCT;
                     } else {
                         this.memory.task = Tasks.REPAIR
@@ -50,11 +48,7 @@ class Constructor extends rb.RoleBase {
     _do_task() {
         switch(this.memory.task) {
             case Tasks.CONSTRUCT: {
-                if(this.safeCSites.length > 0) {
-                    if(this.creep.build(this.safeCSites[0]) == ERR_NOT_IN_RANGE) {
-                        this.creep.moveTo(this.safeCSites[0], {visualizePathStyle: {stroke: '#FE5000'}})
-                    }
-                } 
+                this._construct()
                 break;
             }
             case Tasks.REPAIR: {

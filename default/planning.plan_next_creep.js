@@ -82,11 +82,9 @@ function plan_creep_body(spawn, control_level, role, emergency) {
     }
     if(!!fill_body) {
         let fill_cost = BODYPART_COST[bdata.fill_body]
-        while ((etot - ecost) >= 0 && body.length < 50) {
+        while ((etot - ecost - fill_cost) >= 0 && body.length < 50) {
             ecost += fill_cost
-            if((etot - ecost) >= 0) {
-                body.push(fill_body)
-            }
+            body.push(fill_body)
         }
     }
 

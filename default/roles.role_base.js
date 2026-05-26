@@ -82,6 +82,34 @@ class RoleBase {
             }
         }
     }
+    _construct() {
+        let safeCSites = this._get_all_safe_construction_sites() 
+        if(safeCSites.length > 0) {
+            if(this.creep.build(safeCSites[0]) == ERR_NOT_IN_RANGE) {
+                this.creep.moveTo(safeCSites[0], {visualizePathStyle: {stroke: '#FE5000'}})
+            }
+        } 
+    }
+    _get_all_transfer_targets() {
+        let targets = this.creep.room.find(FIND_MY_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
+                        structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
+                }
+        });
+        let other_targets = this.creep.room.find(FIND_STRUCTURES, {filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_CONTAINER && structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
+                }})
+        return targets.concat(other_targets)
+    }
+    _get_all_safe_construction_sites() {
+        const csites = this.creep.room.find(FIND_MY_CONSTRUCTION_SITES)
+        const safeCSites = csites.filter(csite => {
+            const hostilesNearby = csite.pos.findInRange(FIND_HOSTILE_CREEPS, 5);
+            return hostilesNearby.length === 0;
+        })
+        return safeCSites
+    }
 }
 
 module.exports = {
