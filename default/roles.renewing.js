@@ -1,4 +1,5 @@
 const rb = require('./roles.role_base');
+const { DEFAULT_OPACITY } = require('./consts')
 
 const Tasks = {
     GET_ENERGY: "GET_ENERGY",
@@ -65,7 +66,7 @@ class Renewing extends rb.RoleBase {
                 });
                 if(targets.length > 0) {
                     if(this.creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+                        this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffaa00', opacity: DEFAULT_OPACITY}});
                     }
                 // if all spawns and extensions are full, fill up containers
                 } else {
@@ -74,7 +75,7 @@ class Renewing extends rb.RoleBase {
                     }})
                     if(targets.length > 0) {
                         if(this.creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                            this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff', opacity: DEFAULT_OPACITY}});
                         }
                     }
                 }
@@ -82,7 +83,7 @@ class Renewing extends rb.RoleBase {
             case Tasks.RENEW: {
                 const spawn = this.creep.room.find(FIND_MY_SPAWNS)
                 if (spawn[0].renewCreep(this.creep) == ERR_NOT_IN_RANGE) {
-                    this.creep.moveTo(spawn[0], {visualizePathStyle: {stroke: "#ff3b9d"}})
+                    this.creep.moveTo(spawn[0], {visualizePathStyle: {stroke: "#ff3b9d", opacity: DEFAULT_OPACITY}})
                 }
             }
         }

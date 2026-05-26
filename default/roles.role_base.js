@@ -1,5 +1,6 @@
 const { FindSafeSources } = require('./utilities.find_safe_sources')
 const { REPAIR_STOP_THRESHHOLD } = require('./consts')
+const { DEFAULT_OPACITY } = require('./consts')
 
 const RoleType = Object.freeze({
     HARVESTER: "HARVESTER",
@@ -30,12 +31,12 @@ class RoleBase {
         if (this.creep.memory.sourceId) {
             const source = Game.getObjectById(this.creep.memory.sourceId)
             if(this.creep.harvest(source) == ERR_NOT_IN_RANGE) {
-            this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00'}});
+            this.creep.moveTo(source, {visualizePathStyle: {stroke: '#ffaa00', opacity: DEFAULT_OPACITY}});
             }
         } else {
             const safeSources = FindSafeSources(creep.room)
             if(this.creep.harvest(safeSources[0]) == ERR_NOT_IN_RANGE) {
-            this.creep.moveTo(safeSources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+            this.creep.moveTo(safeSources[0], {visualizePathStyle: {stroke: '#ffaa00', opacity: DEFAULT_OPACITY}});
             }        
         }
     }
@@ -45,7 +46,7 @@ class RoleBase {
                         }});
         if(targets.length > 0) {
             if(this.creep.withdraw(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff', opacity: DEFAULT_OPACITY}});
             }
         } else {
             this._harvest_safe_source();
@@ -73,7 +74,7 @@ class RoleBase {
             } else {
                 
                 if (this.creep.repair(struct) == ERR_NOT_IN_RANGE) {
-                    this.creep.moveTo(struct, {visualizePathStyle: {stroke: '#00B300'}})
+                    this.creep.moveTo(struct, {visualizePathStyle: {stroke: '#00B300', opacity: DEFAULT_OPACITY}})
                 }
             }
         }
@@ -82,13 +83,13 @@ class RoleBase {
         let safeCSites = this._get_all_safe_construction_sites() 
         if(safeCSites.length > 0) {
             if(this.creep.build(safeCSites[0]) == ERR_NOT_IN_RANGE) {
-                this.creep.moveTo(safeCSites[0], {visualizePathStyle: {stroke: '#FE5000'}})
+                this.creep.moveTo(safeCSites[0], {visualizePathStyle: {stroke: '#FE5000', opacity: DEFAULT_OPACITY}})
             }
         } 
     }
     _upgrade() {
         if(this.creep.upgradeController(this.creep.room.controller) == ERR_NOT_IN_RANGE) {
-            this.creep.moveTo(this.creep.room.controller, {visualizePathStyle: {stroke: '#ffffff'}})
+            this.creep.moveTo(this.creep.room.controller, {visualizePathStyle: {stroke: '#ffffff', opacity: DEFAULT_OPACITY}})
         }
     }
     _get_all_transfer_targets() {

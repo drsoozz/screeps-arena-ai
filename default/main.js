@@ -23,6 +23,7 @@ module.exports.loop = function () {
     waste_collection()
     if (Game.cpu.bucket === 10000) {
         Game.cpu.generatePixel();
+        console.log(`Converting cpu bucket into a Pixel. CURRENT PIXEL COUNT: ${Game.resources.pixel}`)
     }
 
     const rooms = new Set();
