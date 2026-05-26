@@ -25,8 +25,7 @@ function hasBlockedNeighbor(pos, room) {
 
             const blocking = structures.some(s => {
                 return (
-                        s.structureType !== STRUCTURE_ROAD &&
-                        s.structureType !== STRUCTURE_CONTAINER
+                        s.structureType !== STRUCTURE_ROAD
                     );            
                 });
 
@@ -34,13 +33,26 @@ function hasBlockedNeighbor(pos, room) {
                 return true;
             }
 
-            const sites = room.lookForAt(LOOK_CONSTRUCTION_SITES, x, y);
+            const sites = room.lookForAt(LOOK_CONSTRUCTION_SITES, x, y)
+                .filter((s) => s.structureType !== STRUCTURE_ROAD);
             
             if (sites.length > 0) {
                 return true;
             }
 
         }
+    }
+
+    // if something is still here then it is allowed to be destroyed.
+    // i.e. it is a road or a road construction site
+    const structures = room.lookForAt(LOOK_STRUCTURES, pos.x, pos.y)
+    for (i in structures) {
+        structures[i].destroy()
+    }
+
+    const sites = room.lookForAt(LOOK_STRUCTURES, pos.x, pos.y)
+    for (i in sites) {
+        sites[i].destroy()
     }
 
     return false;

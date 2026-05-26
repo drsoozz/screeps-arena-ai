@@ -4,6 +4,7 @@ const RolePriority = [
     RoleType.HARVESTER,
     RoleType.UPGRADER,
     RoleType.CONSTRUCTOR,
+    RoleType.CHARTER,
     RoleType.REPAIRER
 ];
 

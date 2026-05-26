@@ -83,7 +83,6 @@ function _planContainer(room) {
 * @param {Room} room
 */
 function _planRoads(room) {
-
     if (!Memory.road_planner) {
         Memory.road_planner = {};
     }
@@ -116,7 +115,8 @@ function _planRoads(room) {
 }
 
 function hasRoadOrSite(pos) {
-    const structures = pos.lookFor(LOOK_STRUCTURES);
+    const structures = pos.lookFor(LOOK_STRUCTURES)
+        .filter(structure => {return structure.structureType != STRUCTURE_ROAD});
     const sites = pos.lookFor(LOOK_CONSTRUCTION_SITES);
 
     return (

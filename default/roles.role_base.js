@@ -6,7 +6,8 @@ const RoleType = Object.freeze({
     HARVESTER: "HARVESTER",
     CONSTRUCTOR: "CONSTRUCTOR",
     UPGRADER: "UPGRADER",
-    REPAIRER: "REPAIRER"
+    REPAIRER: "REPAIRER",
+    CHARTER: "CHARTER"
 });
 
 class RoleBase {
@@ -42,11 +43,11 @@ class RoleBase {
     }
     _get_energy() {
         let targets = this.creep.room.find(FIND_STRUCTURES, {filter: (structure) => {
-                            return (structure.structureType == STRUCTURE_CONTAINER && structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0);
+                            return (structure.structureType == STRUCTURE_CONTAINER && structure.store.getUsedCapacity(RESOURCE_ENERGY) >= this.creep.store.getCapacity());
                         }});
         if(targets.length > 0) {
             if(this.creep.withdraw(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff', opacity: DEFAULT_OPACITY}});
+                this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffaa00', opacity: DEFAULT_OPACITY}});
             }
         } else {
             this._harvest_safe_source();
@@ -69,7 +70,9 @@ class RoleBase {
             
             /** @param {AnyStructure} struct */
             const struct = Game.getObjectById(this.memory.repair_target)
-            if (struct.hits / struct.hitsMax > REPAIR_STOP_THRESHHOLD) {
+            if (!struct) {
+                this.creep.memory.repair_target = null;
+            } else if (struct.hits / struct.hitsMax > REPAIR_STOP_THRESHHOLD) {
                 this.memory.repair_target = null;
             } else {
                 

@@ -4,17 +4,20 @@ const RoleDist = {
     1: {
         [RoleType.UPGRADER]: 2,
         [RoleType.CONSTRUCTOR]: 0,
-        [RoleType.REPAIRER]: 0
+        [RoleType.REPAIRER]: 0,
+        [RoleType.CHARTER]: 0,
     },
     2: {
         [RoleType.UPGRADER]: 2,
         [RoleType.CONSTRUCTOR]: 3,
-        [RoleType.REPAIRER]: 2
+        [RoleType.REPAIRER]: 2,
+        [RoleType.CHARTER]: 1,
     },
     3: {
         [RoleType.UPGRADER]: 2,
         [RoleType.CONSTRUCTOR]: 4,
-        [RoleType.REPAIRER]: 3
+        [RoleType.REPAIRER]: 3,
+        [RoleType.CHARTER]: 1,
     }
 };
 
@@ -35,6 +38,10 @@ const RoleBody = {
         [RoleType.REPAIRER]: {
             set_body: [CARRY, MOVE, WORK],
             fill_body: null
+        },
+        [RoleType.CHARTER]: {
+            set_body: [MOVE, MOVE, MOVE, MOVE, MOVE],
+            fill_body: null
         }
     },
     2: {
@@ -53,6 +60,10 @@ const RoleBody = {
         [RoleType.REPAIRER]: {
             set_body: [CARRY, CARRY, CARRY, MOVE, MOVE, WORK, WORK],
             fill_body: null
+        },
+        [RoleType.CHARTER]: {
+            set_body: [MOVE, MOVE, MOVE, MOVE, MOVE],
+            fill_body: null
         }
     },
     3: {
@@ -70,6 +81,10 @@ const RoleBody = {
         },
         [RoleType.REPAIRER]: {
             set_body: [CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, WORK, WORK],
+            fill_body: null
+        },
+        [RoleType.CHARTER]: {
+            set_body: [MOVE, MOVE, MOVE, MOVE, MOVE],
             fill_body: null
         }
     },

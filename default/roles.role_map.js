@@ -4,12 +4,14 @@ const {Harvester} = require('./roles.harvester')
 const {Upgrader} = require('./roles.upgrader')
 const {Constructor} = require('./roles.constructor')
 const { Repairer } = require('./roles.repairer')
+const { Charter } = require('./roles.charter')
 
 const RoleMap = {
     [RoleType.HARVESTER]: Harvester,
     [RoleType.UPGRADER]: Upgrader,
     [RoleType.CONSTRUCTOR]: Constructor,
-    [RoleType.REPAIRER]: Repairer
+    [RoleType.REPAIRER]: Repairer,
+    [RoleType.CHARTER]: Charter
 }
 
 module.exports = {RoleMap};

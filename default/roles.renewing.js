@@ -10,7 +10,6 @@ const Tasks = {
 class Renewing extends rb.RoleBase {
     constructor (creep) {
         super(creep)
-
     }
 
     _find_task() {
@@ -19,6 +18,8 @@ class Renewing extends rb.RoleBase {
             case Tasks.GET_ENERGY: {
                 if (this.creep.store.getFreeCapacity(RESOURCE_ENERGY) === 0) {
                     this.memory.task = Tasks.TRANSFER;
+                } else if (!this.creep.store.getCapacity()) {
+                    this.memory.task = Tasks.RENEW
                 }
                 break;
             }
@@ -43,7 +44,7 @@ class Renewing extends rb.RoleBase {
                 for (let estore of estores) {
                     ecurrent += estore.store.getUsedCapacity(RESOURCE_ENERGY)
                 }
-                if (ecurrent < this._find_renew_cost()) {
+                if (ecurrent < this._find_renew_cost() && this.creep.store.getCapacity() != 0) {
                     this.memory.task = Tasks.GET_ENERGY
                 }
             }
@@ -81,9 +82,20 @@ class Renewing extends rb.RoleBase {
                 }
             }
             case Tasks.RENEW: {
-                const spawn = this.creep.room.find(FIND_MY_SPAWNS)
+                if (!this.creep.memory.home) {
+                    this.creep.memory.home = this.creep.room.name;
+                }
+                const spawn = Game.rooms[this.creep.memory.home].find(FIND_MY_SPAWNS)
                 if (spawn[0].renewCreep(this.creep) == ERR_NOT_IN_RANGE) {
-                    this.creep.moveTo(spawn[0], {visualizePathStyle: {stroke: "#ff3b9d", opacity: DEFAULT_OPACITY}})
+                    if (this.creep.room.name != this.creep.memory.home) {
+                        this.creep.moveTo(spawn[0], {
+                            reusePath: 100, 
+                            visualizePathStyle: {stroke: "#ff3b9d", opacity: DEFAULT_OPACITY}
+                        });
+                    } else {
+                        this.creep.moveTo(spawn[0], {visualizePathStyle: {stroke: "#ff3b9d", opacity: DEFAULT_OPACITY}});
+                    }
+                
                 }
             }
         }

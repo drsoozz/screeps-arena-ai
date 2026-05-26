@@ -18,7 +18,7 @@ function plan_next_creep(spawn, control_level) {
 
     for(let name in Game.creeps) {
         let role = Game.creeps[name].memory.role
-        NumCreepsNeeded[role]--
+        NumCreepsNeeded[role]-- 
     }
 
     let emergency = false
@@ -36,7 +36,10 @@ function plan_next_creep(spawn, control_level) {
             }
 
             // mutated by different roles in different ways. sent as an arg into the final spawn command
-            const _memory = {role: role, renewing_num: 0}
+            const _memory = {role: role, renewing_num: 0, home: spawn.room.name}
+            if (role === RoleType.CHARTER) {
+                _memory.renewing_num = -10;
+            }
             _memory.sourceId = _get_source(role, spawn)
             const result = spawn.spawnCreep(body, name, {memory: _memory});
             return result
