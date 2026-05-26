@@ -87,7 +87,7 @@ function getRoleDist(room, control_level) {
     const base = RoleDist[control_level];
     return {
         ...base,
-        [RoleType.HARVESTER]: safeSources.length
+        [RoleType.HARVESTER]: safeSources.length * 2
     }
 }
 

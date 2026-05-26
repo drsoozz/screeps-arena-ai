@@ -106,12 +106,26 @@ function _get_source(role, spawn) {
     let source;
     if (role === RoleType.HARVESTER) {
 
+        const sourceCount = {};
+        for (const creep of Object.values(Game.creeps)) {
+            if (creep.memory.role !== RoleType.HARVESTER) {
+                continue;
+            }
+
+            const id = creep.memory.sourceId;
+            if (!id) {
+                continue;
+            }
+
+            sourceCount[id] = (sourceCount[id] || 0) + 1;
+
+        }
+
         const usedSources = new Set(
-            Object.values(Game.creeps)
-                .filter(c => c.memory.role === RoleType.HARVESTER)
-                .map(c => c.memory.sourceId)
-                .filter(Boolean)
-        );
+            Object.entries(sourceCount)
+                .filter(([id, count]) => count >= 2)
+                .map(([id]) => id)
+        )
 
         source = safeSources.find(s => !usedSources.has(s.id));
     } else {
