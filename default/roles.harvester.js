@@ -1,5 +1,5 @@
 const rb = require('./roles.role_base');
-const { DEFAULT_OPACITY } = require('./consts')
+const { DEFAULT_OPACITY, DEFAULT_REUSE_PATH } = require('./consts')
 
 const Tasks = {
     HARVEST: "HARVEST",
@@ -85,7 +85,10 @@ class Harvester extends rb.RoleBase {
                 });
                 if(targets.length > 0) {
                     if(this.creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffaa00', opacity: DEFAULT_OPACITY}});
+                        this.creep.moveTo(targets[0], {
+                            reusePath: DEFAULT_REUSE_PATH,
+                            visualizePathStyle: {stroke: '#ffaa00', opacity: DEFAULT_OPACITY}
+                        });
                     }
                 // if all spawns and extensions are full, fill up containers
                 } else {
@@ -95,7 +98,10 @@ class Harvester extends rb.RoleBase {
                     }})
                     if(targets.length > 0) {
                         if(this.creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            this.creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffaa00', opacity: DEFAULT_OPACITY}});
+                            this.creep.moveTo(targets[0], {
+                                reusePath: DEFAULT_REUSE_PATH,
+                                visualizePathStyle: {stroke: '#ffaa00', opacity: DEFAULT_OPACITY}
+                            });
                         }
                     }
                 }

@@ -1,0 +1,23 @@
+"filename", "language", "JavaScript JSX", "comment", "blank", "total"
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\consts.js", "JavaScript JSX", 19, 0, 3, 22
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\main.js", "JavaScript JSX", 64, 19, 14, 97
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\planning.control_levels_consts.js", "JavaScript JSX", 99, 6, 6, 111
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\planning.plan_next_creep.js", "JavaScript JSX", 104, 16, 20, 140
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\planning.plan_next_structure.js", "JavaScript JSX", 93, 18, 18, 129
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\planning.priority.js", "JavaScript JSX", 16, 0, 3, 19
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.charter.js", "JavaScript JSX", 77, 0, 4, 81
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.constructor.js", "JavaScript JSX", 61, 0, 5, 66
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.harvester.js", "JavaScript JSX", 115, 1, 4, 120
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.renewing.js", "JavaScript JSX", 120, 1, 9, 130
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.repairer.js", "JavaScript JSX", 57, 0, 5, 62
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.role_base.js", "JavaScript JSX", 118, 12, 5, 135
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.role_map.js", "JavaScript JSX", 14, 1, 2, 17
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.upgrader.js", "JavaScript JSX", 43, 0, 4, 47
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.waiting.js", "JavaScript JSX", 16, 0, 5, 21
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.find_exploration_candidates.js", "JavaScript JSX", 36, 6, 3, 45
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.find_safe_sources.js", "JavaScript JSX", 11, 3, 1, 15
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.has_blocked_neighbor.js", "JavaScript JSX", 40, 7, 14, 61
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.road_planner.js", "JavaScript JSX", 65, 20, 19, 104
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.spiral.js", "JavaScript JSX", 26, 3, 12, 41
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.waste_collection.js", "JavaScript JSX", 17, 0, 1, 18
+"Total", "-", 1211, 113, 157, 1481

@@ -17,6 +17,9 @@ function plan_next_creep(spawn, control_level) {
     }
 
     for(let name in Game.creeps) {
+        if (Game.creeps[name].memory.home != spawn.room.name) {
+            continue;
+        }
         let role = Game.creeps[name].memory.role
         NumCreepsNeeded[role]-- 
     }

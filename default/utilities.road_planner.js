@@ -19,7 +19,7 @@ function roadPlannerCoords(room) {
 
     for (let i = 0; i < importantStructures.length; i++) {
         for (let j = i + 1; j < importantStructures.length; j++) {
-            const path = PathFinder.search(importantStructures[i].pos, importantStructures[j].pos, {range: 1, /**plainCost: 1, swampCost: 1 */}).path;
+            const path = PathFinder.search(importantStructures[i].pos, importantStructures[j].pos, {range: 1, plainCost: 1, swampCost: 1}).path;
             for (let pos of path) {
                 coords.push(pos);
             }

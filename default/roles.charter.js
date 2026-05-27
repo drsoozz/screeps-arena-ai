@@ -1,5 +1,5 @@
 const rb = require('./roles.role_base');
-const { DEFAULT_OPACITY } = require('./consts')
+const { DEFAULT_OPACITY, LONG_JOURNEY_REUSE_PATH } = require('./consts')
 const { FindSafeSources } = require('./utilities.find_safe_sources')
 const {findExplorationCandidates} = require('./utilities.find_exploration_candidates');
 
@@ -60,7 +60,7 @@ class Charter extends rb.RoleBase {
                         range: 24,
                         swampCost: 1,
                         plainCost: 1,
-                        reusePath: 100,
+                        reusePath: LONG_JOURNEY_REUSE_PATH,
                         visualizePathStyle: {stroke: '#048243', opacity: DEFAULT_OPACITY}
                     }) === ERR_NO_PATH) {
                         this.memory.exploration_candidates.index++;
