@@ -17,6 +17,24 @@ class RoleBase {
         this.creep = creep;
         /** @type {Object} */
         this.memory = this.creep.memory;
+
+        // emergency anti-oscillation-loop breaker
+        if (!this.creep.memory.lastRoom) {
+            this.creep.memory.lastRoom = this.creep.room.name;
+        }
+
+        if (this.creep.memory.lastRoom !== this.creep.room.name) {
+            this.creep.memory.stuckTicks = (this.creep.memory.stuckTicks || 0) + 1;
+        } else {
+            this.creep.memory.stuckTicks = 0;
+        }
+
+        this.creep.memory.lastRoom = this.creep.room.name;
+
+        if (this.creep.memory.stuckTicks > 3) {
+            this.creep.move(Math.floor(Math.random() * 8) + 1);
+            return;
+        }
     }
     run() {
         this._find_task();

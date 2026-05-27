@@ -1,5 +1,5 @@
 const rb = require('./roles.role_base');
-const { DEFAULT_OPACITY, DEFAULT_REUSE_PATH } = require('./consts')
+const { DEFAULT_OPACITY, DEFAULT_REUSE_PATH, LONG_JOURNEY_REUSE_PATH } = require('./consts')
 
 const Tasks = {
     GET_ENERGY: "GET_ENERGY",
@@ -91,15 +91,16 @@ class Renewing extends rb.RoleBase {
                 if (!this.creep.memory.home) {
                     this.creep.memory.home = this.creep.room.name;
                 }
-                const spawn = Game.rooms[this.creep.memory.home].find(FIND_MY_SPAWNS)
-                if (spawn[0].renewCreep(this.creep) == ERR_NOT_IN_RANGE) {
+                const spawn = Game.rooms[this.creep.memory.home].find(FIND_MY_SPAWNS)[0]
+                if (spawn.renewCreep(this.creep) == ERR_NOT_IN_RANGE) {
                     if (this.creep.room.name != this.creep.memory.home) {
-                        this.creep.moveTo(spawn[0], {
-                            reusePath: 100, 
+                        this.creep.moveTo(spawn, {
+                            range: 5,
+                            reusePath: LONG_JOURNEY_REUSE_PATH, 
                             visualizePathStyle: {stroke: "#ff3b9d", opacity: DEFAULT_OPACITY}
-                        });
+                        })
                     } else {
-                        this.creep.moveTo(spawn[0], {
+                        this.creep.moveTo(spawn, {
                             reusePath: DEFAULT_REUSE_PATH,
                             visualizePathStyle: {stroke: "#ff3b9d", opacity: DEFAULT_OPACITY}
                         });
