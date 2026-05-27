@@ -61,18 +61,18 @@ class Charter extends rb.RoleBase {
                 const timeSinceLastChartDate = Game.time - (roomMemory.lastChartDate);
                 const currentRoomTimeSinceLastChartDate = Game.time - (currentRoomMemory.lastChartDate);
                 if (currentRoomTimeSinceLastChartDate > 1000) {
-                    roomMemory.safeSources = FindSafeSources(this.creep.room).map((s) => {
+                    currentRoomMemory.safeSources = FindSafeSources(this.creep.room).map((s) => {
                         return s.id
                     });
-                    roomMemory.controllerLevel = this.creep.room.controller.level ?? 0;
-                    roomMemory.lastChartDate = Game.time;
+                    currentRoomMemory.controllerLevel = this.creep.room.controller.level ?? 0;
+                    currentRoomMemory.lastChartDate = Game.time;
                 }
 
                 if (timeSinceLastChartDate < 10000) {
                     this.memory.exploration_candidates.index++;
                 } else if (this.creep.room.name != target_room) {
                     if (this.creep.moveTo(new RoomPosition(25, 25, target_room), {
-                        range: 24,
+                        range: 23,
                         swampCost: 1,
                         plainCost: 1,
                         reusePath: LONG_JOURNEY_REUSE_PATH,

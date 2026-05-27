@@ -15,6 +15,7 @@ class Waiting extends rb.RoleBase {
 
     _do_task() {
         this.memory.waiting--;
+        this.memory.waiting = 0;
     }
 }
 

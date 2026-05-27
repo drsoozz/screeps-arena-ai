@@ -2,7 +2,7 @@
 const { waste_collection } = require('./utilities.waste_collection');
 const { plan_next_creep } = require('./planning.plan_next_creep');
 const {planNextStructure} = require('./planning.plan_next_structure');
-
+const {handleRenewing} = require('./utilities.handle_renewing');
 const {Renewing} = require('./roles.renewing');
 const {Waiting} = require('./roles.waiting');
 
@@ -54,35 +54,15 @@ module.exports.loop = function () {
         // const start = Game.cpu.getUsed()
         let creep = Game.creeps[name];
         
-        if (creep.ticksToLive <= MIN_LIFE && 
-            !creep.memory.renewing && 
-            (
-                !creep.memory.renewing_num || 
-                creep.memory.renewing_num < MAX_RENEW_CYCLES[creep.room.controller.level]
-            ) || 
-            !!creep.memory.should_renew
-        ) {
-            console.log(`"${creep.name}" has begun renewing.`);
-            creep.memory.renewing = true
-            if (!creep.memory.renewing_num) {
-                creep.memory.renewing_num = 1
-            } else {
-                creep.memory.renewing_num += 1
-            }
-        } else if (creep.ticksToLive >= MAX_LIFE) {
-            if (creep.memory.renewing) {
-                console.log(`"${creep.name}" has finished renewing.`)
-            }
-            creep.memory.renewing = false
-        }
+        handleRenewing(creep);
         
         let RoleClass;
         if (creep.memory.renewing) {
-            RoleClass = Renewing
+            RoleClass = Renewing;
         } else if (!!creep.memory.waiting) {
-            RoleClass = Waiting
+            RoleClass = Waiting;
         } else {
-            RoleClass = RoleMap[creep.memory.role]
+            RoleClass = RoleMap[creep.memory.role];
         }
 
         if (!RoleClass) {
