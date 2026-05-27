@@ -7,8 +7,7 @@ const {MIN_LIFE, MAX_LIFE, MAX_RENEW_CYCLES} = require('./consts')
  */
 function handleRenewing(creep) {
     const renewLimit =
-        MAX_RENEW_CYCLES[Game.rooms[creep.memory.home].controller.level]
-        MAX_RENEW_CYCLES[creep.room.controller.level];
+        MAX_RENEW_CYCLES[Game.rooms[creep.memory.home].controller.level];
 
     const renewCount =
         creep.memory.renewing_num ?? 0;
