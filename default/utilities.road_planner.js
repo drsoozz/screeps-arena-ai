@@ -16,7 +16,8 @@ function roadPlannerCoords(room) {
     const _controller = [room.controller];
     const _sources = FindSafeSources(room);
     const _spawns = room.find(FIND_MY_SPAWNS);
-    const importantStructures = [..._controller, ..._sources, ..._spawns];
+    const importantStructures = [..._controller, ..._sources, ..._spawns]
+        .filter(Boolean);
 
     for (let i = 0; i < importantStructures.length; i++) {
         for (let j = i + 1; j < importantStructures.length; j++) {
@@ -37,7 +38,9 @@ function roadPlannerCoords(room) {
     // 1 range AOE around containers and extensions
     pushNearbyPositions(containersAndExtensions, 1, terrain, coords);
 
-    createRoadsToExploitedSources(_spawns[0], coords);
+    if (_spawns.length > 1) {
+        createRoadsToExploitedSources(_spawns[0], coords);
+    }
 
     const seen = new Set();
     const unique = [];

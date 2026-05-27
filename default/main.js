@@ -65,7 +65,7 @@ module.exports.loop = function () {
 
         // console.log(`${name} time: ${Game.cpu.getUsed() - start}`)
     }
-    
+
     for (let room of rooms) {
         // const start = Game.cpu.getUsed()
         // Part 3 - Structure planning

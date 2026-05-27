@@ -46,6 +46,9 @@ function planNextStructure(room) {
 */
 function __planUtility(room, structure) {
     const spawn_pos = room.find(FIND_MY_SPAWNS)[0]
+    if (spawn_pos.length < 1) {
+        return;
+    }
     const _xy = spiralOutward(spawn_pos.x, spawn_pos.y)
     while (true) {
         const xy = _xy.next().value;
@@ -53,7 +56,7 @@ function __planUtility(room, structure) {
             continue;
         }
         if (xy.x < 0 || xy.x >= ROOM_SIZE - 1 || xy.y < 0 || xy.y >= ROOM_SIZE - 1) {
-            return undefined;
+            return;
         }
         let position = new RoomPosition(xy.x, xy.y, room.name)
         if (!hasBlockedNeighbor(position, room)) {
