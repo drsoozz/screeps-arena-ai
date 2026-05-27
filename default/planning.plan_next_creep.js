@@ -33,7 +33,7 @@ function plan_next_creep(spawn, control_level) {
         if(NumCreepsNeeded[role] > 0) {
             let name = "Uranium-" + role + "-" + Game.time;
             console.log('Spawning new creep of role "' + role + '".')
-            let body = plan_creep_body(spawn, control_level, role)
+            let body = plan_creep_body(spawn, control_level, role, emergency)
             if (!body) {
                 return undefined;
             }
