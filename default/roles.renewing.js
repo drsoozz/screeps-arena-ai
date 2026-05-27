@@ -16,7 +16,7 @@ class Renewing extends rb.RoleBase {
         switch(this.memory.task) {
             default:
             case Tasks.GET_ENERGY: {
-                if (this.creep.store.getFreeCapacity(RESOURCE_ENERGY) === 0) {
+                if (this.creep.store.getFreeCapacity(RESOURCE_ENERGY) === 0 || this.creep.store.getCapacity(RESOURCE_ENERGY) === 0) {
                     this.memory.task = Tasks.TRANSFER;
                 } else if (!this.creep.store.getCapacity()) {
                     this.memory.task = Tasks.RENEW
@@ -24,7 +24,7 @@ class Renewing extends rb.RoleBase {
                 break;
             }
             case Tasks.TRANSFER: {
-                if (this.creep.store.getUsedCapacity(RESOURCE_ENERGY) === 0) {
+                if (this.creep.store.getFreeCapacity(RESOURCE_ENERGY) === 0 || this.creep.store.getCapacity(RESOURCE_ENERGY) === 0) {
                     this.memory.task = Tasks.RENEW;
                 } else if(this._estores_full()) {
                     this.memory.task = Tasks.RENEW;
@@ -44,7 +44,7 @@ class Renewing extends rb.RoleBase {
                 for (let estore of estores) {
                     ecurrent += estore.store.getUsedCapacity(RESOURCE_ENERGY)
                 }
-                if (ecurrent < this._find_renew_cost() && this.creep.store.getCapacity() != 0) {
+                if (ecurrent < this._find_renew_cost() && this.creep.store.getCapacity(RESOURCE_ENERGY) != 0) {
                     this.memory.task = Tasks.GET_ENERGY
                 }
             }
@@ -98,7 +98,7 @@ class Renewing extends rb.RoleBase {
                             range: 5,
                             reusePath: LONG_JOURNEY_REUSE_PATH, 
                             visualizePathStyle: {stroke: "#ff3b9d", opacity: DEFAULT_OPACITY}
-                        })
+                        });
                     } else {
                         this.creep.moveTo(spawn, {
                             reusePath: DEFAULT_REUSE_PATH,

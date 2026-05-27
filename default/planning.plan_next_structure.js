@@ -106,7 +106,19 @@ function _planRoads(room) {
     const raw = Memory.road_planner[room.name].coords[Memory.road_planner[room.name].index];
     const pos = new RoomPosition(raw.x, raw.y, raw.roomName);
 
-    if (!hasRoadOrSite(pos)) {
+    // if this pos is not actually for the current room, move it to the intended room!
+    if (pos.roomName != room.name) {
+        if (!Memory.road_planner[pos.roomName] || 
+            !Memory.road_planner[pos.roomName].coords || 
+            Memory.road_planner[pos.roomName].index == undefined) {
+            Memory.road_planner[pos.roomName] = {
+                coords: [],
+                index: 0
+            }
+        } else {
+        }
+        Memory.road_planner[pos.roomName].coords.push({x: pos.x, y: pos.y, roomName: pos.roomName});
+    } else if (!hasRoadOrSite(pos)) {
         pos.createConstructionSite(STRUCTURE_ROAD);
     }
 

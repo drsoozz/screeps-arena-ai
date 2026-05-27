@@ -1,5 +1,6 @@
 const {ROOM_SIZE} = require('./consts')
 const { FindSafeSources } = require('./utilities.find_safe_sources')
+const {findExploitationCandidates} = require('./utilities.find_exploitation_candidates');
 
 /**
  * 
@@ -26,7 +27,7 @@ function roadPlannerCoords(room) {
         }
     }
     // 2 range AOE around all important structures
-    pushNearbyPositions(importantStructures, 2, terrain, coords)
+    pushNearbyPositions(importantStructures, 2, terrain, coords);
 
     //  coords one at a time
 
@@ -34,7 +35,9 @@ function roadPlannerCoords(room) {
         return structure.structureType == STRUCTURE_CONTAINER || structure.structureType == STRUCTURE_EXTENSION
     }});
     // 1 range AOE around containers and extensions
-    pushNearbyPositions(containersAndExtensions, 1, terrain, coords)
+    pushNearbyPositions(containersAndExtensions, 1, terrain, coords);
+
+    createRoadsToExploitedSources(_spawns[0], coords);
 
     const seen = new Set();
     const unique = [];
@@ -97,6 +100,24 @@ function pushNearbyPositions(objects, range, terrain, coords) {
                     )
                 );
             }
+        }
+    }
+}
+
+/**
+ * 
+ * @param {StructureSpawn} spawn
+ * @param {RoomPosition[]} coords
+ */
+function createRoadsToExploitedSources(spawn, coords) {
+    let _exploitationCandidates = findExploitationCandidates(spawn.room);
+    if (_exploitationCandidates.length < 1) {
+        return;
+    }
+    for (let i = 0; i < _exploitationCandidates.length; i++) {
+        const path = PathFinder.search(spawn.pos, {pos: _exploitationCandidates[i], range: 1}, {plainCost: 1, swampCost: 1}).path;
+        for (let pos of path) {
+            coords.push(pos);
         }
     }
 }

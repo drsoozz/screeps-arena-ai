@@ -51,7 +51,6 @@ class Harvester extends rb.RoleBase {
                     this.memory.task = Tasks.CONSTRUCT
                 } else if ((this._get_all_repair_targets().length === 0)) {
                     this.memory.task = Tasks.UPGRADE
-                    console.log(this.memory.task)
                 }
                 break;
             }

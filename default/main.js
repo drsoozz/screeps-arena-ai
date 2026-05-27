@@ -6,6 +6,7 @@ const {handleRenewing} = require('./utilities.handle_renewing');
 const {Renewing} = require('./roles.renewing');
 const {Waiting} = require('./roles.waiting');
 
+const {findExploitationCandidates} = require('./utilities.find_exploitation_candidates');
 
 const {MIN_LIFE, MAX_LIFE, MAX_RENEW_CYCLES} = require('./consts')
 const { RoleMap } = require('./roles.role_map')
@@ -18,7 +19,6 @@ module.exports.loop = function () {
      *  3. Structure planning
      *  4. Creep actions
      */
-
     // console.log("\n\n")
 
     // Part 1 - Waste collection
@@ -33,27 +33,17 @@ module.exports.loop = function () {
     for (let name in Game.spawns) {
         // const start = Game.cpu.getUsed()
         let spawn = Game.spawns[name]
-        rooms.add(spawn.room)
+        
         // Part 2 - Creep planning
         plan_next_creep(spawn, spawn.room.controller.level)
         // console.log(`${name} time: ${Game.cpu.getUsed() - start}`)
-    }
-    for (let room of rooms) {
-        // const start = Game.cpu.getUsed()
-        // Part 3 - Structure planning
-        if (room.controller.level < 2) {
-            continue;
-        } else {
-            planNextStructure(room);
-        }
-        // console.log(`${room.name} time: ${Game.cpu.getUsed() - start}`)
     }
 
     // Part 4 - Creep actions
     for(let name in Game.creeps) {
         // const start = Game.cpu.getUsed()
         let creep = Game.creeps[name];
-        
+        rooms.add(creep.room)
         handleRenewing(creep);
         
         let RoleClass;
@@ -74,5 +64,16 @@ module.exports.loop = function () {
         role.run();
 
         // console.log(`${name} time: ${Game.cpu.getUsed() - start}`)
+    }
+    
+    for (let room of rooms) {
+        // const start = Game.cpu.getUsed()
+        // Part 3 - Structure planning
+        if (room.controller.level < 2) {
+            continue;
+        } else {
+            planNextStructure(room);
+        }
+        // console.log(`${room.name} time: ${Game.cpu.getUsed() - start}`)
     }
 }

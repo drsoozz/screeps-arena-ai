@@ -36,12 +36,14 @@ function findExplorationCandidates(room, range = DEFAULT_EXPLORATION_RANGE) {
                         return true;
                     } else if (!Memory.rooms[r]) {
                         return true;
-                    } else if (!Memory.rooms[r].controllerLevel) {
+                    } else if (Memory.rooms[r].controllerLevel === undefined) {
                         return true;
-                    } else if (Memory.rooms[r].controllerLevel > 0) {
+                    } else if (Memory.rooms[r].controllerLevel === 0) {
+                        return true;
+                    } else {
                         searched.add(r);
                         return false;
-                    }
+                    } 
                 })
             exits.forEach(r => {
                 loop_candidates.add(r);
