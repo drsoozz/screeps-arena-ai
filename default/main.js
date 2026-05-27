@@ -59,7 +59,8 @@ module.exports.loop = function () {
             (
                 !creep.memory.renewing_num || 
                 creep.memory.renewing_num < MAX_RENEW_CYCLES[creep.room.controller.level]
-            )
+            ) || 
+            !!creep.memory.should_renew
         ) {
             console.log(`"${creep.name}" has begun renewing.`);
             creep.memory.renewing = true

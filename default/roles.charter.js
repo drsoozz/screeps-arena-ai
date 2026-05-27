@@ -37,7 +37,6 @@ class Charter extends rb.RoleBase {
                     console.log(`"exploration_candidates" was regenerated for ${this.creep.name}`);
                     this.memory.waiting = 5000;
                 }
-
                 const target_room = this.memory.exploration_candidates.rooms[this.memory.exploration_candidates.index];
                 if (!target_room) {
                     return;
@@ -48,11 +47,27 @@ class Charter extends rb.RoleBase {
                 if (!Memory.rooms[target_room]) {
                     Memory.rooms[target_room] = {};
                 }
+                if (!Memory.rooms[this.creep.room.name]) {
+                    Memory.rooms[this.creep.room.name] = {};
+                }
                 let roomMemory = Memory.rooms[target_room];
+                let currentRoomMemory = Memory.rooms[this.creep.room.name];
                 if (!roomMemory.lastChartDate) {
                     roomMemory.lastChartDate = 1;
                 }
+                if (!currentRoomMemory.lastChartDate) {
+                    currentRoomMemory.lastChartDate = 1;
+                }
                 const timeSinceLastChartDate = Game.time - (roomMemory.lastChartDate);
+                const currentRoomTimeSinceLastChartDate = Game.time - (currentRoomMemory.lastChartDate);
+                if (currentRoomTimeSinceLastChartDate > 1000) {
+                    roomMemory.safeSources = FindSafeSources(this.creep.room).map((s) => {
+                        return s.id
+                    });
+                    roomMemory.controllerLevel = this.creep.room.controller.level ?? 0;
+                    roomMemory.lastChartDate = Game.time;
+                }
+
                 if (timeSinceLastChartDate < 10000) {
                     this.memory.exploration_candidates.index++;
                 } else if (this.creep.room.name != target_room) {
@@ -66,11 +81,13 @@ class Charter extends rb.RoleBase {
                         this.memory.exploration_candidates.index++;
                     }
                 } else {
-                    roomMemory.numSafeSources = FindSafeSources(this.creep.room).length;
+                    roomMemory.safeSources = FindSafeSources(this.creep.room).map((s) => {
+                        return s.id
+                    });
                     roomMemory.controllerLevel = this.creep.room.controller.level ?? 0;
                     roomMemory.lastChartDate = Game.time;
                     this.memory.exploration_candidates.index++;
-                    this.creep.memory.renewing = true; // always renew between charting targets to prevent creep death.
+                    this.creep.memory.should_renew = true; // always renew between charting targets to prevent creep death.
                 }
                 break;
             }
