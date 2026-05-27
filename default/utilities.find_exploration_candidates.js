@@ -31,6 +31,18 @@ function findExplorationCandidates(room, range = DEFAULT_EXPLORATION_RANGE) {
                         plainCost: 1
                     }).path.length < 700;
                 })
+                .filter(r => {
+                    if (!Memory.rooms) {
+                        return true;
+                    } else if (!Memory.rooms[r]) {
+                        return true;
+                    } else if (!Memory.rooms[r].controllerLevel) {
+                        return true;
+                    } else if (Memory.rooms[r].controllerLevel > 0) {
+                        searched.add(r);
+                        return false;
+                    }
+                })
             exits.forEach(r => {
                 loop_candidates.add(r);
                 candidates.add(r);
