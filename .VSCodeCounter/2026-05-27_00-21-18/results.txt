@@ -1,0 +1,47 @@
+Date : 2026-05-27 00:21:18
+Directory : c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default
+Total : 23 files,  1370 codes, 129 comments, 178 blanks, all 1677 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| JavaScript JSX |         23 |      1,370 |        129 |        178 |      1,677 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                         | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                            |         23 |      1,370 |        129 |        178 |      1,677 |
++--------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                     | language       | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\consts.js                                 | JavaScript JSX |         22 |          0 |          3 |         25 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\main.js                                   | JavaScript JSX |         47 |         19 |         13 |         79 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\planning.control_levels_consts.js         | JavaScript JSX |         99 |          6 |          6 |        111 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\planning.plan_next_creep.js               | JavaScript JSX |        107 |         16 |         20 |        143 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\planning.plan_next_structure.js           | JavaScript JSX |        104 |         19 |         18 |        141 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\planning.priority.js                      | JavaScript JSX |         16 |          0 |          3 |         19 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.charter.js                          | JavaScript JSX |         94 |          0 |          4 |         98 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.constructor.js                      | JavaScript JSX |         61 |          0 |          5 |         66 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.harvester.js                        | JavaScript JSX |        120 |          1 |          4 |        125 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.renewing.js                         | JavaScript JSX |        130 |          1 |          9 |        140 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.repairer.js                         | JavaScript JSX |         57 |          0 |          5 |         62 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.role_base.js                        | JavaScript JSX |        149 |         13 |          9 |        171 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.role_map.js                         | JavaScript JSX |         14 |          1 |          2 |         17 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.upgrader.js                         | JavaScript JSX |         43 |          0 |          4 |         47 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.waiting.js                          | JavaScript JSX |         16 |          0 |          5 |         21 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.find_exploitation_candidates.js | JavaScript JSX |         36 |          4 |          4 |         44 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.find_exploration_candidates.js  | JavaScript JSX |         50 |          6 |          3 |         59 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.find_safe_sources.js            | JavaScript JSX |         11 |          3 |          1 |         15 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.handle_renewing.js              | JavaScript JSX |         32 |          5 |         12 |         49 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.has_blocked_neighbor.js         | JavaScript JSX |         40 |          7 |         14 |         61 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.road_planner.js                 | JavaScript JSX |         79 |         25 |         21 |        125 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.spiral.js                       | JavaScript JSX |         26 |          3 |         12 |         41 |
+| c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.waste_collection.js             | JavaScript JSX |         17 |          0 |          1 |         18 |
+| Total                                                                                                        |                |      1,370 |        129 |        178 |      1,677 |
++--------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+

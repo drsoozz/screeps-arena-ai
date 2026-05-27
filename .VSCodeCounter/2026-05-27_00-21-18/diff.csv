@@ -1,0 +1,14 @@
+"filename", "language", "JavaScript JSX", "comment", "blank", "total"
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\consts.js", "JavaScript JSX", 3, 0, 0, 3
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\main.js", "JavaScript JSX", -17, 0, -1, -18
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\planning.plan_next_creep.js", "JavaScript JSX", 3, 0, 0, 3
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\planning.plan_next_structure.js", "JavaScript JSX", 11, 1, 0, 12
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.charter.js", "JavaScript JSX", 17, 0, 0, 17
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.harvester.js", "JavaScript JSX", 5, 0, 0, 5
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.renewing.js", "JavaScript JSX", 10, 0, 0, 10
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\roles.role_base.js", "JavaScript JSX", 31, 1, 4, 36
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.find_exploitation_candidates.js", "JavaScript JSX", 36, 4, 4, 44
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.find_exploration_candidates.js", "JavaScript JSX", 14, 0, 0, 14
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.handle_renewing.js", "JavaScript JSX", 32, 5, 12, 49
+"c:\Users\Killian\AppData\Local\Screeps\scripts\screeps.com\default\utilities.road_planner.js", "JavaScript JSX", 14, 5, 2, 21
+"Total", "-", 159, 16, 21, 196
